@@ -68,11 +68,11 @@ const studios = [
     securityDeposit: 200,
     capacity: 12,
     location: 'Bushwick, Brooklyn, NY',
-    imageURL: img('1598653222000-6b7b7a552625'),
+    imageURL: img('1554941829-202a0b2403b8'),
     images: [
-      img('1598653222000-6b7b7a552625'),
-      img('1517245386807-bb43f82c33c4'),
+      img('1554941829-202a0b2403b8'),
       img('1516035069371-29a1b244cc32'),
+      img('1520390138845-fd2d229dd553'),
     ],
     amenities: ['Natural light', 'Cyc wall', 'Backdrops', 'Lighting kit', 'Makeup room', 'Wi-Fi'],
     overview:
@@ -87,11 +87,11 @@ const studios = [
     securityDeposit: 500,
     capacity: 40,
     location: 'Greenpoint, Brooklyn, NY',
-    imageURL: img('1492724441997-5dc865305da7'),
+    imageURL: img('1497366811353-6870744d04b2'),
     images: [
-      img('1492724441997-5dc865305da7'),
+      img('1497366811353-6870744d04b2'),
       img('1485846234645-a62644f84728'),
-      img('1567443024551-f3e3cc2be870'),
+      img('1542204165-65bf26472b9b'),
     ],
     amenities: [
       'Green screen',
@@ -113,9 +113,9 @@ const studios = [
     securityDeposit: 100,
     capacity: 4,
     location: 'SoHo, Manhattan, NY',
-    imageURL: img('1590602847861-f357a9332bbc'),
+    imageURL: img('1589903308904-1010c2294adc'),
     images: [
-      img('1590602847861-f357a9332bbc'),
+      img('1589903308904-1010c2294adc'),
       img('1478737270239-2f02b77fc618'),
       img('1598488035139-bdbb2231ce04'),
     ],
@@ -132,11 +132,11 @@ const studios = [
     securityDeposit: 150,
     capacity: 6,
     location: 'Williamsburg, Brooklyn, NY',
-    imageURL: img('1519892300165-cb5542fb47c7'),
+    imageURL: img('1598488035139-bdbb2231ce04'),
     images: [
+      img('1598488035139-bdbb2231ce04'),
       img('1519892300165-cb5542fb47c7'),
       img('1571330735066-03aaa9429d89'),
-      img('1505236858219-8359eb29e329'),
     ],
     amenities: ['Mixing console', 'Instruments', 'Pro audio', 'Kitchenette', 'Air conditioning'],
     overview:
@@ -151,11 +151,11 @@ const studios = [
     securityDeposit: 120,
     capacity: 10,
     location: 'Gowanus, Brooklyn, NY',
-    imageURL: img('1519710164239-da123dc03ef4'),
+    imageURL: img('1493106641515-6b5631de4bb9'),
     images: [
-      img('1519710164239-da123dc03ef4'),
-      img('1598387993441-a364f854c3e1'),
-      img('1533928298208-27ff66555d8d'),
+      img('1493106641515-6b5631de4bb9'),
+      img('1610701596007-11502861dcfa'),
+      img('1578749556568-bc2c40e68b61'),
     ],
     amenities: ['Natural light', 'Seating lounge', 'Wi-Fi', 'Kitchenette', 'Air conditioning'],
     overview:
@@ -170,11 +170,11 @@ const studios = [
     securityDeposit: 300,
     capacity: 15,
     location: 'Long Island City, Queens, NY',
-    imageURL: img('1567443024551-f3e3cc2be870'),
+    imageURL: img('1497366754035-f200968a6e72'),
     images: [
-      img('1567443024551-f3e3cc2be870'),
-      img('1497366216548-37526070297c'),
-      img('1516321318423-f06f85e504b3'),
+      img('1497366754035-f200968a6e72'),
+      img('1600607687939-ce8a6c25118c'),
+      img('1616486338812-3dadae4b4ace'),
     ],
     amenities: ['Natural light', 'Blackout curtains', 'Lighting kit', 'Makeup room', 'Freight access'],
     overview:
@@ -208,11 +208,11 @@ const studios = [
     securityDeposit: 80,
     capacity: 8,
     location: 'Bushwick, Brooklyn, NY',
-    imageURL: img('1511379938547-c1f69419868d'),
+    imageURL: img('1519892300165-cb5542fb47c7'),
     images: [
+      img('1519892300165-cb5542fb47c7'),
       img('1511379938547-c1f69419868d'),
-      img('1505236858219-8359eb29e329'),
-      img('1504384308090-c894fdcc538d'),
+      img('1571330735066-03aaa9429d89'),
     ],
     amenities: ['Instruments', 'Pro audio', 'Air conditioning', 'Wi-Fi'],
     overview:
@@ -227,11 +227,11 @@ const studios = [
     securityDeposit: 250,
     capacity: 8,
     location: 'Fort Greene, Brooklyn, NY',
-    imageURL: img('1416339306562-f3d12fefd36f'),
+    imageURL: img('1519710164239-da123dc03ef4'),
     images: [
-      img('1416339306562-f3d12fefd36f'),
+      img('1519710164239-da123dc03ef4'),
       img('1452587925148-ce544e77e70d'),
-      img('1516035069371-29a1b244cc32'),
+      img('1497366216548-37526070297c'),
     ],
     amenities: ['Natural light', 'Backdrops', 'Lighting kit', 'Makeup room', 'Wi-Fi'],
     overview:
@@ -250,7 +250,7 @@ const studios = [
     images: [
       img('1524178232363-1fb2b075b655'),
       img('1522202176988-66273c2fd55f'),
-      img('1497366811353-6870744d04b2'),
+      img('1547891654-e66ed7ebb968'),
     ],
     amenities: ['Seating lounge', 'Wi-Fi', 'Kitchenette', 'Natural light', 'Parking'],
     overview:
@@ -287,8 +287,8 @@ const studios = [
     imageURL: img('1485846234645-a62644f84728'),
     images: [
       img('1485846234645-a62644f84728'),
-      img('1492724441997-5dc865305da7'),
-      img('1567443024551-f3e3cc2be870'),
+      img('1497366811353-6870744d04b2'),
+      img('1542204165-65bf26472b9b'),
     ],
     amenities: [
       'Green screen',
@@ -310,11 +310,11 @@ const studios = [
     securityDeposit: 150,
     capacity: 5,
     location: 'Park Slope, Brooklyn, NY',
-    imageURL: img('1571330735066-03aaa9429d89'),
+    imageURL: img('1511379938547-c1f69419868d'),
     images: [
+      img('1511379938547-c1f69419868d'),
+      img('1598488035139-bdbb2231ce04'),
       img('1571330735066-03aaa9429d89'),
-      img('1519892300165-cb5542fb47c7'),
-      img('1505236858219-8359eb29e329'),
     ],
     amenities: ['Mixing console', 'Instruments', 'Pro audio', 'Kitchenette'],
     overview:
@@ -329,11 +329,11 @@ const studios = [
     securityDeposit: 90,
     capacity: 14,
     location: 'Harlem, Manhattan, NY',
-    imageURL: img('1598387993441-a364f854c3e1'),
+    imageURL: img('1460661419201-fd4cecdf8a8b'),
     images: [
-      img('1598387993441-a364f854c3e1'),
-      img('1519710164239-da123dc03ef4'),
-      img('1533928298208-27ff66555d8d'),
+      img('1460661419201-fd4cecdf8a8b'),
+      img('1513364776144-60967b0f800f'),
+      img('1547891654-e66ed7ebb968'),
     ],
     amenities: ['Natural light', 'Seating lounge', 'Wi-Fi', 'Kitchenette'],
     overview:
