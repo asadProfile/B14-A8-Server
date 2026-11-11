@@ -144,8 +144,25 @@ const googleClient = () =>
     clientSecret: config.google.clientSecret,
   });
 
+/*
+ * The client proxies /api through a Next.js rewrite, which keeps the original
+ * browser host in `x-forwarded-host` (and the public protocol in
+ * `x-forwarded-proto`). Prefer that origin so the OAuth redirect URI matches
+ * the registered callback on the client domain, not the private API host.
+ * Only a configured client origin is trusted; anything else falls back to the
+ * address the request actually reached.
+ */
+const forwardedClientOrigin = (req) => {
+  const host = (req.get('x-forwarded-host') || '').split(',')[0].trim();
+  if (!host) return '';
+  const origin = `${req.protocol}://${host}`.replace(/\/$/, '');
+  return config.clientUrls.includes(origin) ? origin : '';
+};
+
 const apiOrigin = (req) =>
-  config.publicApiUrl || `${req.protocol}://${req.get('host')}`;
+  config.publicApiUrl ||
+  forwardedClientOrigin(req) ||
+  `${req.protocol}://${req.get('host')}`;
 
 const redirectWithError = (res, origin, code) =>
   res.redirect(`${origin}/login?error=${encodeURIComponent(code)}`);

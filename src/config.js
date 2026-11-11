@@ -1,6 +1,12 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 
-dotenv.config({ quiet: true });
+// Resolve .env next to the package, not from the process cwd: scripts launched
+// through `npm --prefix` (and the root dev launcher) keep the project root as
+// cwd, which would otherwise skip this file.
+const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+dotenv.config({ path: path.join(packageRoot, '.env'), quiet: true });
 
 const isProd = process.env.NODE_ENV === 'production';
 

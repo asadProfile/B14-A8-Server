@@ -2,7 +2,7 @@
 
 Express + MongoDB API for **StudioSpace**, a peer-to-peer marketplace where creators discover and book photography studios, sound stages, podcast rooms, music suites and workshops.
 
-The Next.js client lives in [`../client`](../client).
+The Next.js client lives in [B14-A8-Client](https://github.com/asadProfile/B14-A8-Client).
 
 ## What this API does
 
@@ -144,9 +144,24 @@ Google OAuth redirect URI: `https://your-api-domain.com/api/auth/google/callback
 ## Deployment (Render + MongoDB Atlas)
 
 1. Create a MongoDB Atlas cluster and database user; copy the connection string.
-2. Create a Render Web Service pointing at this `server` directory.
+2. Create a Render Web Service pointing at this repository.
 3. Build command: `npm install`; start command: `npm start`.
 4. Set `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`, `PUBLIC_API_URL`, and optionally
    `IMGBB_API_KEY` and the Google OAuth variables.
-5. Deploy. The first boot seeds the demo data when the database is empty; run
+5. Point the Vercel client at this service with `API_PROXY_URL`, and keep
+   `CLIENT_URL` here equal to the client origin(s), comma-separated.
+6. Deploy. The first boot seeds the demo data when the database is empty; run
    `npm run seed` locally against Atlas if you want to reset it.
+
+Google sign-in uses the origin the browser opened, forwarded by the Next.js
+proxy, so `CLIENT_URL` must include every client origin. For the hosted app:
+
+```env
+CLIENT_URL=https://b14-a8-client-one.vercel.app
+GOOGLE_CLIENT_ID=<web client id>
+GOOGLE_CLIENT_SECRET=<web client secret>
+```
+
+Register `https://b14-a8-client-one.vercel.app/api/auth/google/callback` (and
+`http://localhost:3000/api/auth/google/callback` for local use) as authorised
+redirect URIs on that OAuth client.
