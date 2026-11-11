@@ -29,13 +29,13 @@
     "google-auth-library": "^10.5.0",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^11.3.0",
     "mongoose": "^8.24.8",
     "morgan": "^1.10.1",
     "multer": "^2.5.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "mongodb-memory-server": "^11.3.0",
     "supertest": "^7.1.4"
   }
 }

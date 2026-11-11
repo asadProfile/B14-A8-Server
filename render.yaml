@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: studiosspace-api
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        value: https://b14-a8-client-one.vercel.app
+      - key: AUTO_SEED
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: IMGBB_API_KEY
+        sync: false

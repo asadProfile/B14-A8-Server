@@ -143,15 +143,24 @@ Google OAuth redirect URI: `https://your-api-domain.com/api/auth/google/callback
 
 ## Deployment (Render + MongoDB Atlas)
 
-1. Create a MongoDB Atlas cluster and database user; copy the connection string.
-2. Create a Render Web Service pointing at this repository.
-3. Build command: `npm install`; start command: `npm start`.
-4. Set `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`, `PUBLIC_API_URL`, and optionally
-   `IMGBB_API_KEY` and the Google OAuth variables.
-5. Point the Vercel client at this service with `API_PROXY_URL`, and keep
-   `CLIENT_URL` here equal to the client origin(s), comma-separated.
-6. Deploy. The first boot seeds the demo data when the database is empty; run
+The repository includes [`render.yaml`](render.yaml), so Render can create the
+service from a Blueprint:
+
+1. Push this repository, then in Render choose **New → Blueprint** and select it.
+2. Render reads the build (`npm ci`) and start (`npm start`) commands, the
+   `/api/health` health check, and prompts for the `sync: false` variables.
+3. Recommended: create a MongoDB Atlas cluster and set `MONGODB_URI`. Without
+   it the service boots an in-memory MongoDB and reseeds on every restart —
+   fine for a demo, but data does not survive deploys.
+4. Paste `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` when prompted (and
+   `IMGBB_API_KEY` if you have one). `JWT_SECRET` is generated automatically.
+5. Copy the service URL (for example `https://studiosspace-api.onrender.com`)
+   and set it as `API_PROXY_URL` on the Vercel client project.
+6. The first boot seeds the demo data when the database is empty; run
    `npm run seed` locally against Atlas if you want to reset it.
+
+`CLIENT_URL` is preset to the deployed client origin. Keep it in sync if the
+client domain changes — comma-separated if there is more than one.
 
 Google sign-in uses the origin the browser opened, forwarded by the Next.js
 proxy, so `CLIENT_URL` must include every client origin. For the hosted app:
