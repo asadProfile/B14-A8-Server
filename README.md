@@ -141,7 +141,33 @@ Google OAuth redirect URI: `https://your-api-domain.com/api/auth/google/callback
 3. **Theme customization** — implemented in the Next.js client with a persisted
    light/dark theme and an inline script that prevents a flash on reload.
 
-## Deployment (Render + MongoDB Atlas)
+## Deployment
+
+The API runs either as a Vercel serverless function or as a long-running
+Render web service. Both need a MongoDB Atlas connection string
+(`MONGODB_URI`) — the in-memory fallback is development-only by design.
+
+### Vercel (serverless)
+
+`api/index.js` exports the Express app as a Vercel function and `vercel.json`
+rewrites every path to it, so `/api/*` and `/uploads/*` behave exactly as they
+do locally.
+
+1. Import the repository as a Vercel project and set the framework preset to
+   **Other** (the Express preset expects its own entry point).
+2. Set `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`,
+   `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in the project's environment
+   variables. `NODE_ENV=production` is provided by Vercel.
+3. Keep `AUTO_SEED=true` for the demo dataset. The first request seeds the
+   database, and later cold starts reuse it.
+4. Point the client's `API_PROXY_URL` at the deployment. The Next.js rewrite
+   keeps cookies first-party and forwards the browser origin, so Google
+   sign-in uses the client domain's callback.
+5. Optional: connect a Vercel Blob store to the project to enable image
+   uploads. The connection injects `BLOB_READ_WRITE_TOKEN`, which the upload
+   route picks up automatically (serverless filesystems are read-only).
+
+### Render (long-running server)
 
 The repository includes [`render.yaml`](render.yaml), so Render can create the
 service from a Blueprint:

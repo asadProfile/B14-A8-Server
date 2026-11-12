@@ -26,6 +26,7 @@ export const config = {
   mongoUri: process.env.MONGODB_URI || '',
   autoSeed: process.env.AUTO_SEED !== 'false',
   imgbbKey: process.env.IMGBB_API_KEY || '',
+  blobToken: process.env.BLOB_READ_WRITE_TOKEN || '',
   publicApiUrl: (process.env.PUBLIC_API_URL || '').replace(/\/$/, ''),
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID || '',

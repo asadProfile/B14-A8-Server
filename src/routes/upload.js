@@ -47,6 +47,34 @@ const uploadToImgBB = async (buffer) => {
   return payload.data.url;
 };
 
+/*
+ * Vercel functions have a read-only filesystem, so hosted uploads go to
+ * Vercel Blob (the store is connected to the project and injects
+ * BLOB_READ_WRITE_TOKEN). Local disks and ImgBB still work everywhere else.
+ */
+const uploadToBlob = async (file) => {
+  const extension = ALLOWED_TYPES.get(file.mimetype);
+  const pathname = `studios/${Date.now()}-${randomUUID().slice(0, 8)}.${extension}`;
+
+  const response = await fetch(`https://blob.vercel-storage.com/${pathname}`, {
+    method: 'PUT',
+    headers: {
+      authorization: `Bearer ${config.blobToken}`,
+      'x-api-version': '7',
+      'x-content-type': file.mimetype,
+      'x-add-random-suffix': '0',
+    },
+    body: file.buffer,
+    signal: AbortSignal.timeout(20_000),
+  });
+
+  const payload = await response.json().catch(() => null);
+  if (!response.ok || !payload?.url) {
+    throw new ApiError(502, 'The image service could not accept that file. Please try again.');
+  }
+  return payload.url;
+};
+
 const uploadLocally = async (file) => {
   await fs.mkdir(uploadsDir, { recursive: true });
   const extension = ALLOWED_TYPES.get(file.mimetype);
@@ -68,6 +96,16 @@ router.post(
         success: true,
         url,
         provider: 'imgbb',
+        message: 'Image uploaded.',
+      });
+    }
+
+    if (config.blobToken) {
+      const url = await uploadToBlob(req.file);
+      return res.status(201).json({
+        success: true,
+        url,
+        provider: 'vercel-blob',
         message: 'Image uploaded.',
       });
     }

@@ -1,0 +1,7 @@
+# Never upload local secrets or throwaway test artefacts to Vercel.
+.env
+.env.*
+node_modules
+tests
+uploads
+coverage
