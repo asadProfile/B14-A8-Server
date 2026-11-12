@@ -24,6 +24,10 @@ export const config = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
   cookieName: 'studiosspace_token',
   mongoUri: process.env.MONGODB_URI || '',
+  // Demo-only escape hatch for single-instance hosts (for example a free
+  // Render web service) when no MongoDB Atlas cluster is available yet.
+  // Data lives in the process and resets whenever the service restarts.
+  allowInMemoryDb: process.env.ALLOW_IN_MEMORY_DB === 'true',
   autoSeed: process.env.AUTO_SEED !== 'false',
   imgbbKey: process.env.IMGBB_API_KEY || '',
   blobToken: process.env.BLOB_READ_WRITE_TOKEN || '',

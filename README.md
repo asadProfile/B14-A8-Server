@@ -60,6 +60,7 @@ bookings in every status (Pending, Confirmed, Completed, Cancelled).
 | `PORT` | API port (default `5000`) |
 | `NODE_ENV` | `development` or `production` |
 | `MONGODB_URI` | MongoDB Atlas connection string. Optional in development. |
+| `ALLOW_IN_MEMORY_DB` | `true` lets a single-instance production host run the in-memory database when `MONGODB_URI` is blank. Data resets on restart — demo only, never on serverless. |
 | `JWT_SECRET` | Token signing secret. **Required in production.** |
 | `JWT_EXPIRES_IN` | Token lifetime (default `7d`) |
 | `CLIENT_URL` | Allowed client origin(s), comma-separated |
@@ -175,9 +176,11 @@ service from a Blueprint:
 1. Push this repository, then in Render choose **New → Blueprint** and select it.
 2. Render reads the build (`npm ci`) and start (`npm start`) commands, the
    `/api/health` health check, and prompts for the `sync: false` variables.
-3. Recommended: create a MongoDB Atlas cluster and set `MONGODB_URI`. Without
-   it the service boots an in-memory MongoDB and reseeds on every restart —
-   fine for a demo, but data does not survive deploys.
+3. Recommended: create a MongoDB Atlas cluster and set `MONGODB_URI`. The
+   Blueprint sets `ALLOW_IN_MEMORY_DB=true`, so a blank URI still runs an
+   in-memory MongoDB that reseeds on every restart — fine for a demo, but the
+   data does not survive deploys or the free tier's idle spin-down. Use Atlas
+   for anything that must persist.
 4. Paste `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` when prompted (and
    `IMGBB_API_KEY` if you have one). `JWT_SECRET` is generated automatically.
 5. Copy the service URL (for example `https://studiosspace-api.onrender.com`)
